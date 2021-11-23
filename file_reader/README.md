@@ -1,0 +1,2 @@
+## type.go
+type.go は、[rededge](https://github.com/latonaio/rededge) の [EC_MC_sample_production_order_events.json](https://github.com/latonaio/rededge/blob/main/samples/EC_MC_sample_production_order_events.json) と、[SDC_Bill_Of_Material_sample.json](https://github.com/latonaio/rededge/blob/main/samples/SDC_Bill_Of_Material_sample.json) を [こちら](https://mholt.github.io/json-to-go/) のツールでコンバートしたうえで、加工を加えたものです。
