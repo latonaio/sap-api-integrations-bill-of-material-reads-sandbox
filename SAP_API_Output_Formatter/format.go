@@ -2,13 +2,13 @@ package sap_api_output_formatter
 
 import (
 	"encoding/json"
-	"sap-api-integrations-material-stock-reads/SAP_API_Caller/responses"
+	"sap-api-integrations-bill-of-material-reads/SAP_API_Caller/responses"
 
 	"github.com/latonaio/golang-logging-library/logger"
 )
 
-func ConvertToMaterialStock(raw []byte, l *logger.Logger) *MaterialStock {
-	pm := &responses.MaterialStock{}
+func ConvertToBillOfMaterial(raw []byte, l *logger.Logger) *BillOfMaterial {
+	pm := &responses.BillOfMaterial{}
 	err := json.Unmarshal(raw, pm)
 	if err != nil {
 		l.Error(err)
@@ -23,11 +23,18 @@ func ConvertToMaterialStock(raw []byte, l *logger.Logger) *MaterialStock {
 	}
 	data := pm.D.Results[0]
 
-	return &MaterialStock{
-		Material:            data.Material,
-		Plant:               data.Plant,
-		StorageLocation:     data.StorageLocation,
-		Batch:               data.ValidityStartDate,
-		ToMaterialStock:     data.ToMaterialStock,
+	return &BillOfMaterial{
+		Material                     data.Material,
+		Plant                        data.Plant,
+		BillOfMaterial               data.BillOfMaterial,
+		BillOfMaterialVariant        data.BillOfMaterialVariant,
+		ValidityStartDate            data.ValidityStartDate,
+		ValidityEndDate              data.ValidityEndDate,
+		HeaderIsDeleted              data.HeaderIsDeleted,
+		BillOfMaterialItemNodeNumber data.BillOfMaterialItemNodeNumber,
+		BillOfMaterialComponent      data.BillOfMaterialComponent,
+		BillOfMaterialItemQuantity   data.BillOfMaterialItemQuantity,
+		ComponentScrapInPercent      data.ComponentScrapInPercent,
+		ItemIsDeleted                data.ItemIsDeleted,
 	}
 }
