@@ -12,20 +12,13 @@ type BillOfMaterialReads struct {
 }
 
 type BillOfMaterial struct {
-	Material              string `json:"Material"`
-	Plant                 string `json:"Plant"`
-	BillOfMaterial        string `json:"BillOfMaterial"`
-	BillOfMaterialVariant string `json:"BillOfMaterialVariant"`
-	ValidityStartDate     string `json:"ValidityStartDate"`
-	ValidityEndDate       string `json:"ValidityEndDate"`
-	HeaderIsDeleted       bool   `json:"HeaderIsDeleted"`
-}
-
-type BillOfMaterialItemNodeNumber struct {
 	Material                     string `json:"Material"`
 	Plant                        string `json:"Plant"`
 	BillOfMaterial               string `json:"BillOfMaterial"`
 	BillOfMaterialVariant        string `json:"BillOfMaterialVariant"`
+	ValidityStartDate            string `json:"ValidityStartDate"`
+	ValidityEndDate              string `json:"ValidityEndDate"`
+	HeaderIsDeleted              bool   `json:"HeaderIsDeleted"`
 	BillOfMaterialItemNodeNumber string `json:"BillOfMaterialItemNodeNumber"`
 	BillOfMaterialComponent      string `json:"BillOfMaterialComponent"`
 	BillOfMaterialItemQuantity   string `json:"BillOfMaterialItemQuantity"`
