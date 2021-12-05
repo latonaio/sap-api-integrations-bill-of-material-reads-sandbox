@@ -1,2 +1,4 @@
-github.com/latonaio/golang-logging-library v1.0.0 h1:B/3ThdbK/TpPs6Jx0/9t93MaTFEoCY79P4o9HYUxSzY=
-github.com/latonaio/golang-logging-library v1.0.0/go.mod h1:cy2JDsmtVdGOdnRTjz2t+pS23yf88rRl/4MH4bqs4Yo=
+github.com/latonaio/golang-logging-library v1.0.2 h1:ZEdYNvfhMgNmY8PKlWnTOt1zVG8CQas3fxGdyOf0pe4=
+github.com/latonaio/golang-logging-library v1.0.2/go.mod h1:k9d98p3JsNZzDxqPpLPgiVFBXvPV6Urj3iSZqR7x0jw=
+golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 h1:go1bK/D/BFZV2I8cIQd1NKEZ+0owSTG1fDTci4IqFcE=
+golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=

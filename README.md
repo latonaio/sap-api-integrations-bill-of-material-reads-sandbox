@@ -14,3 +14,23 @@ sap-api-integrations-bill-of-material-reads は、主にエッジコンピュー
 
 ## クラウド環境での利用  
 sap-api-integrations-bill-of-material-reads は、外部システムがクラウド環境である場合にSAPと統合するときにおいても、利用可能なように設計されています。  
+
+## 本レポジトリ が 対応する API サービス
+sap-api-integrations-bill-of-material-reads が対応する APIサービス は、次のものです。
+
+* APIサービス概要説明 URL: https://api.sap.com/api/OP_API_BILL_OF_MATERIAL_SRV_0002/overview  
+* APIサービス名(=baseURL): API_BILL_OF_MATERIAL_SRV;v=0002
+
+## 本レポジトリ に 含まれる API名
+sap-api-integrations-bill-of-material-reads には、次の API をコールするためのリソースが含まれています。  
+
+* MaterialBOMItem（部品表 - 明細）
+
+## API への 値入力条件 の 初期値
+sap-api-integrations-bill-of-material-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
+
+### SDC レイアウト
+
+* inoutSDC.BillOfMaterial.Material（品目）
+* inoutSDC.BillOfMaterial.Plant（プラント）
+* inoutSDC.BillOfMaterial.ValidityEndDate（有効終了日）
