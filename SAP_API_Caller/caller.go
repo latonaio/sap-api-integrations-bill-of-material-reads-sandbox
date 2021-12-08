@@ -4,10 +4,12 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	sap_api_output_formatter "sap-api-integrations-bill-of-material-reads/SAP_API_Output_Formatter"
 	"strings"
 	"sync"
 
 	"github.com/latonaio/golang-logging-library/logger"
+	"golang.org/x/xerrors"
 )
 
 type SAPAPICaller struct {
@@ -24,47 +26,54 @@ func NewSAPAPICaller(baseUrl string, l *logger.Logger) *SAPAPICaller {
 	}
 }
 
-func (c *SAPAPICaller) AsyncGetBillOfMaterial(Material, Plant, ValidityEndDate string) {
+func (c *SAPAPICaller) AsyncGetBillOfMaterial(material, plant string) {
 	wg := &sync.WaitGroup{}
 
 	wg.Add(1)
-	go func() {
-		c.BillOfMaterial(Material, Plant, ValidityEndDate)
+	func() {
+		c.Item(material, plant)
 		wg.Done()
 	}()
 	wg.Wait()
 }
 
-func (c *SAPAPICaller) BillOfMaterial(Material, Plant, ValidityEndDate string) {
-	res, err := c.callBillOfMaterialSrvAPIRequirement("MaterialBOMItem", Material, Plant, ValidityEndDate)
+func (c *SAPAPICaller) Item(material, plant string) {
+	data, err := c.callBillOfMaterialSrvAPIRequirementItem("MaterialBOMItem", material, plant)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
-
-	c.log.Info(res)
-
+	c.log.Info(data)
 }
 
-func (c *SAPAPICaller) callBillOfMaterialSrvAPIRequirement(api, Material, Plant, ValidityEndDate string) ([]byte, error) {
+func (c *SAPAPICaller) callBillOfMaterialSrvAPIRequirementItem(api, material, plant string) (*sap_api_output_formatter.Item, error) {
 	url := strings.Join([]string{c.baseURL, "API_BILL_OF_MATERIAL_SRV;v=0002", api}, "/")
 	req, _ := http.NewRequest("GET", url, nil)
 
-	params := req.URL.Query()
-	// params.Add("$select", "Material, Plant, ValidityEndDate")
-	params.Add("$filter", fmt.Sprintf("Material eq '%s' and Plant eq '%s' and ValidityEndDate eq '%s'", Material, Plant, ValidityEndDate))
-	req.URL.RawQuery = params.Encode()
+	c.setHeaderAPIKeyAccept(req)
+	c.getQueryWithItem(req, material, plant)
 
-	req.Header.Set("APIKey", c.apiKey)
-	req.Header.Set("Accept", "application/json")
-
-	client := new(http.Client)
-	resp, err := client.Do(req)
+	resp, err := new(http.Client).Do(req)
 	if err != nil {
-		return nil, err
+		return nil, xerrors.Errorf("API request error: %w", err)
 	}
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return byteArray, nil
+	data, err := sap_api_output_formatter.ConvertToItem(byteArray, c.log)
+	if err != nil {
+		return nil, xerrors.Errorf("convert error: %w", err)
+	}
+	return data, nil
+}
+
+func (c *SAPAPICaller) setHeaderAPIKeyAccept(req *http.Request) {
+	req.Header.Set("APIKey", c.apiKey)
+	req.Header.Set("Accept", "application/json")
+}
+
+func (c *SAPAPICaller) getQueryWithItem(req *http.Request, material, plant string) {
+	params := req.URL.Query()
+	params.Add("$filter", fmt.Sprintf("Material eq '%s' and Plant eq '%s'", material, plant))
+	req.URL.RawQuery = params.Encode()
 }

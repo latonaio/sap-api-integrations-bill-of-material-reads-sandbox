@@ -3,24 +3,25 @@
 	"result": true,
 	"redis_key": "abcdefg",
 	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
-	"BillOfMaterial": {
-		"Material": "100141",
-		"Plant": "1000",
-		"BillOfMaterial": "00000001",
-		"BillOfMaterialVariant": "00000001",
-		"ValidityStartDate": "20211109",
+	"BillOfMaterialItem": {
+		"BillOfMaterial": "",
+		"BillOfMaterialVariant": "",
+		"BillOfMaterialCategory": "",
+		"BillOfMaterialVersion": "",
+		"BillOfMaterialItemNodeNumber": "",
+		"HeaderChangeDocument": "",
+		"Material": "SG23",
+		"Plant": "1010",
+		"ValidityStartDate": "",
 		"ValidityEndDate": "",
-		"HeaderIsDeleted": false,
-		"BillOfMaterialItemNodeNumber": {
-			"BillOfMaterialItemNodeNumber": "1",
-			"BillOfMaterialComponent": "25",
-			"BillOfMaterialItemQuantity": "45.5",
-			"ComponentScrapInPercent": "10.2",
-			"ItemIsDeleted": false
-		}
+		"BillOfMaterialComponent": "",
+		"ComponentDescription": "",
+		"BillOfMaterialItemQuantity": "",
+		"ComponentScrapInPercent": "",
+		"IsDeleted": false
 	},
 	"api_schema": "sap.s4.beh.billofmaterial.v1.BillOfMaterial.Created.v1",
-	"material_code": "100141",
-	"plant": "1000",
+	"material_code": "",
+	"plant": "1010",
 	"deleted": false
 }

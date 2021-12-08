@@ -53,28 +53,29 @@ type EC_MC struct {
 }
 
 type SDC struct {
-	ConnectionKey  string `json:"connection_key"`
-	Result         bool   `json:"result"`
-	RedisKey       string `json:"redis_key"`
-	Filepath       string `json:"filepath"`
-	BillOfMaterial struct {
-		Material                     string `json:"Material"`
-		Plant                        string `json:"Plant"`
+	ConnectionKey      string `json:"connection_key"`
+	Result             bool   `json:"result"`
+	RedisKey           string `json:"redis_key"`
+	Filepath           string `json:"filepath"`
+	BillOfMaterialItem struct {
 		BillOfMaterial               string `json:"BillOfMaterial"`
 		BillOfMaterialVariant        string `json:"BillOfMaterialVariant"`
+		BillOfMaterialCategory       string `json:"BillOfMaterialCategory"`
+		BillOfMaterialVersion        string `json:"BillOfMaterialVersion"`
+		BillOfMaterialItemNodeNumber string `json:"BillOfMaterialItemNodeNumber"`
+		HeaderChangeDocument         string `json:"HeaderChangeDocument"`
+		Material                     string `json:"Material"`
+		Plant                        string `json:"Plant"`
 		ValidityStartDate            string `json:"ValidityStartDate"`
 		ValidityEndDate              string `json:"ValidityEndDate"`
-		HeaderIsDeleted              bool   `json:"HeaderIsDeleted"`
-		BillOfMaterialItemNodeNumber struct {
-			BillOfMaterialItemNodeNumber string  `json:"BillOfMaterialItemNodeNumber"`
-			BillOfMaterialComponent      string  `json:"BillOfMaterialComponent"`
-			BillOfMaterialItemQuantity   string  `json:"BillOfMaterialItemQuantity"`
-			ComponentScrapInPercent      string  `json:"ComponentScrapInPercent"`
-			ItemIsDeleted                bool    `json:"ItemIsDeleted"`
-		} `json:"BillOfMaterialItemNodeNumber"`
-	} `json:"BillOfMaterial"`
+		BillOfMaterialComponent      string `json:"BillOfMaterialComponent"`
+		ComponentDescription         string `json:"ComponentDescription"`
+		BillOfMaterialItemQuantity   string `json:"BillOfMaterialItemQuantity"`
+		ComponentScrapInPercent      string `json:"ComponentScrapInPercent"`
+		IsDeleted                    bool   `json:"IsDeleted"`
+	} `json:"BillOfMaterialItem"`
 	APISchema    string `json:"api_schema"`
-	MaterialCode string `json:"material_code"`
+	Material     string `json:"material_code"`
 	Plant        string `json:"plant"`
 	Deleted      bool   `json:"deleted"`
 }

@@ -16,8 +16,7 @@ func main() {
 	)
 
     caller.AsyncGetBillOfMaterial(
-        inoutSDC.BillOfMaterial.Material,
-        inoutSDC.BillOfMaterial.Plant,
-        inoutSDC.BillOfMaterial.ValidityEndDate,
+        inoutSDC.BillOfMaterialItem.Material,
+        inoutSDC.BillOfMaterialItem.Plant,
     )
 }

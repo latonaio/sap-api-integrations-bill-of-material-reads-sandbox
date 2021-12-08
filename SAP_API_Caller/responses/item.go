@@ -1,17 +1,13 @@
-package sap_api_output_formatter
-
-type BillOfMaterialReads struct {
-	ConnectionKey string `json:"connection_key"`
-	Result        bool   `json:"result"`
-	RedisKey      string `json:"redis_key"`
-	Filepath      string `json:"filepath"`
-	APISchema     string `json:"api_schema"`
-	MaterialCode  string `json:"material_code"`
-	Plant         string `json:"plant"`
-	Deleted       bool   `json:"deleted"`
-}
+package responses
 
 type Item struct {
+	D struct {
+		Results []struct {
+			Metadata struct {
+				ID   string `json:"id"`
+				URI  string `json:"uri"`
+				Type string `json:"type"`
+			} `json:"__metadata"`
 		BillOfMaterial               string `json:"BillOfMaterial"`
 		BillOfMaterialVariant        string `json:"BillOfMaterialVariant"`
 		BillOfMaterialCategory       string `json:"BillOfMaterialCategory"`
@@ -27,4 +23,6 @@ type Item struct {
 		BillOfMaterialItemQuantity   string `json:"BillOfMaterialItemQuantity"`
 		ComponentScrapInPercent      string `json:"ComponentScrapInPercent"`
 		IsDeleted                    bool   `json:"IsDeleted"`
+		} `json:"results"`
+	} `json:"d"`
 }

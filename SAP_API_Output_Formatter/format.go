@@ -5,36 +5,39 @@ import (
 	"sap-api-integrations-bill-of-material-reads/SAP_API_Caller/responses"
 
 	"github.com/latonaio/golang-logging-library/logger"
+	"golang.org/x/xerrors"
 )
 
-func ConvertToBillOfMaterial(raw []byte, l *logger.Logger) *BillOfMaterial {
-	pm := &responses.BillOfMaterial{}
+func ConvertToItem(raw []byte, l *logger.Logger) (*Item, error) {
+	pm := &responses.Item{}
+
 	err := json.Unmarshal(raw, pm)
 	if err != nil {
-		l.Error(err)
-		return nil
+		return nil, xerrors.Errorf("cannot convert to Item. unmarshal error: %w", err)
 	}
 	if len(pm.D.Results) == 0 {
-		l.Error("Result data is not exist.")
-		return nil
+		return nil, xerrors.New("Result data is not exist")
 	}
 	if len(pm.D.Results) > 1 {
-		l.Error("raw data has too many Results. %d Results exist. expected only 1 Result. Use the first of Results array", len(pm.D.Results))
+		l.Info("raw data has too many Results. %d Results exist. expected only 1 Result. Use the first of Results array", len(pm.D.Results))
 	}
 	data := pm.D.Results[0]
 
-	return &BillOfMaterial{
-		Material                     data.Material,
-		Plant                        data.Plant,
-		BillOfMaterial               data.BillOfMaterial,
-		BillOfMaterialVariant        data.BillOfMaterialVariant,
-		ValidityStartDate            data.ValidityStartDate,
-		ValidityEndDate              data.ValidityEndDate,
-		HeaderIsDeleted              data.HeaderIsDeleted,
-		BillOfMaterialItemNodeNumber data.BillOfMaterialItemNodeNumber,
-		BillOfMaterialComponent      data.BillOfMaterialComponent,
-		BillOfMaterialItemQuantity   data.BillOfMaterialItemQuantity,
-		ComponentScrapInPercent      data.ComponentScrapInPercent,
-		ItemIsDeleted                data.ItemIsDeleted,
-	}
+	return &Item{
+		BillOfMaterial:               data.BillOfMaterial,
+		BillOfMaterialVariant:        data.BillOfMaterialVariant,
+		BillOfMaterialCategory:       data.BillOfMaterialCategory,
+		BillOfMaterialVersion:        data.BillOfMaterialVersion,
+		BillOfMaterialItemNodeNumber: data.BillOfMaterialItemNodeNumber,
+		HeaderChangeDocument:         data.HeaderChangeDocument,
+		Material:                     data.Material,
+		Plant:                        data.Plant,
+		ValidityStartDate:            data.ValidityStartDate,
+		ValidityEndDate:              data.ValidityEndDate,
+		BillOfMaterialComponent:      data.BillOfMaterialComponent,
+		ComponentDescription:         data.ComponentDescription,
+		BillOfMaterialItemQuantity:   data.BillOfMaterialItemQuantity,
+		ComponentScrapInPercent:      data.ComponentScrapInPercent,
+		IsDeleted:                    data.IsDeleted,
+	}, nil
 }
