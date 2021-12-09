@@ -33,4 +33,3 @@ sap-api-integrations-bill-of-material-reads において、API への値入力�
 
 * inoutSDC.BillOfMaterial.Material（品目）
 * inoutSDC.BillOfMaterial.Plant（プラント）
-* inoutSDC.BillOfMaterial.ValidityEndDate（有効終了日）
