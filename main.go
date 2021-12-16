@@ -14,9 +14,17 @@ func main() {
 	caller := sap_api_caller.NewSAPAPICaller(
 		"https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/", l,
 	)
+	
+	accepter := inoutSDC.Accepter
+	if len(accepter) == 0 || accepter[0] == "All" {
+		accepter = []string{
+			"Item",
+		}
+	}	
 
     caller.AsyncGetBillOfMaterial(
         inoutSDC.BillOfMaterialItem.Material,
         inoutSDC.BillOfMaterialItem.Plant,
+		accepter,
     )
 }

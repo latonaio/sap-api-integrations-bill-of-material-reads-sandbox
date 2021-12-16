@@ -26,14 +26,22 @@ func NewSAPAPICaller(baseUrl string, l *logger.Logger) *SAPAPICaller {
 	}
 }
 
-func (c *SAPAPICaller) AsyncGetBillOfMaterial(material, plant string) {
+func (c *SAPAPICaller) AsyncGetBillOfMaterial(material, plant string, accepter []string) {
 	wg := &sync.WaitGroup{}
+	wg.Add(len(accepter))
+	for _, fn := range accepter {
+		switch fn {
+		case "Item":
+			func() {
+				c.Item(material, plant)
+				wg.Done()
+			}()
 
-	wg.Add(1)
-	func() {
-		c.Item(material, plant)
-		wg.Done()
-	}()
+		default:
+			wg.Done()
+		}
+	}
+
 	wg.Wait()
 }
 

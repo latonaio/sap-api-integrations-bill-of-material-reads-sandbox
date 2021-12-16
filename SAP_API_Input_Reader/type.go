@@ -75,6 +75,7 @@ type SDC struct {
 		IsDeleted                    bool   `json:"IsDeleted"`
 	} `json:"BillOfMaterialItem"`
 	APISchema    string `json:"api_schema"`
+	Accepter   []string `json:"accepter"`
 	Material     string `json:"material_code"`
 	Plant        string `json:"plant"`
 	Deleted      bool   `json:"deleted"`
