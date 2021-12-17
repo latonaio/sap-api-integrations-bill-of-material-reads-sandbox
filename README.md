@@ -90,3 +90,17 @@ func (c *SAPAPICaller) AsyncGetBillOfMaterial(material, plant string, accepter [
 }
 ```
 
+## Output  
+本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。  
+以下の sample.json の例は、SAP 部品表  の 明細 が取得された結果の JSON の例です。  
+以下の項目のうち、"BaseUnit" ～ "WeightUnit" は、/SAP_API_Output_Formatter/type.go 内 の Type Product {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
+
+```
+{
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-bill-of-material-reads/SAP_API_Caller/caller.go#L46",
+	"function": "sap-api-integrations-bill-of-material-reads/SAP_API_Caller.(*SAPAPICaller).Item",
+	"level": "INFO",
+	"message": "&{BillOfMaterial:00000001 BillOfMaterialVariant:1 BillOfMaterialCategory:M BillOfMaterialVersion: BillOfMaterialItemNodeNumber:1 HeaderChangeDocument: Material:SG23 Plant:1010 ValidityStartDate:/Date(1136073600000)/ ValidityEndDate:/Date(253402214400000)/ BillOfMaterialComponent:RM13 ComponentDescription:RAW13,PD,Subcontracting BillOfMaterialItemQuantity:100 ComponentScrapInPercent:0.00 IsDeleted:false}",
+	"time": "2021-12-08T21:13:42.001292+09:00"
+}
+```
