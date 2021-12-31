@@ -1,7 +1,0 @@
-{
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-bill-of-material-reads/SAP_API_Caller/caller.go#L46",
-	"function": "sap-api-integrations-bill-of-material-reads/SAP_API_Caller.(*SAPAPICaller).Item",
-	"level": "INFO",
-	"message": "&{BillOfMaterial:00000001 BillOfMaterialVariant:1 BillOfMaterialCategory:M BillOfMaterialVersion: BillOfMaterialItemNodeNumber:1 HeaderChangeDocument: Material:SG23 Plant:1010 ValidityStartDate:/Date(1136073600000)/ ValidityEndDate:/Date(253402214400000)/ BillOfMaterialComponent:RM13 ComponentDescription:RAW13,PD,Subcontracting BillOfMaterialItemQuantity:100 ComponentScrapInPercent:0.00 IsDeleted:false}",
-	"time": "2021-12-08T21:13:42.001292+09:00"
-}

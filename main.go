@@ -10,21 +10,21 @@ import (
 func main() {
 	l := logger.NewLogger()
 	fr := sap_api_input_reader.NewFileReader()
-	inoutSDC := fr.ReadSDC("./Inputs//SDC_Bill_Of_Material_sample.json")
+	inoutSDC := fr.ReadSDC("./Inputs//SDC_Bill_Of_Material_Item_sample.json")
 	caller := sap_api_caller.NewSAPAPICaller(
 		"https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/", l,
 	)
-	
+
 	accepter := inoutSDC.Accepter
 	if len(accepter) == 0 || accepter[0] == "All" {
 		accepter = []string{
-			"Item",
+			"Header", "Item",
 		}
-	}	
+	}
 
-    caller.AsyncGetBillOfMaterial(
-        inoutSDC.BillOfMaterialItem.Material,
-        inoutSDC.BillOfMaterialItem.Plant,
+	caller.AsyncGetBillOfMaterial(
+		inoutSDC.BillOfMaterial.Material,
+		inoutSDC.BillOfMaterial.Plant,
 		accepter,
-    )
+	)
 }

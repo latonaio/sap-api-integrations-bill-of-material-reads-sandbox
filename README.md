@@ -24,6 +24,8 @@ sap-api-integrations-bill-of-material-reads が対応する APIサービス は�
 ## 本レポジトリ に 含まれる API名
 sap-api-integrations-bill-of-material-reads には、次の API をコールするためのリソースが含まれています。  
 
+* MaterialBOM（部品表 - ヘッダ）※部品表関連データを取得するために、ToItem、と合わせて利用されます。
+* ToItem（部品表 - 明細 ※To）
 * MaterialBOMItem（部品表 - 明細）
 
 ## API への 値入力条件 の 初期値
@@ -42,14 +44,14 @@ Latona および AION の SAP 関連リソースでは、Inputs フォルダ下�
 * sample.jsonの記載例(1)  
 
 accepter において 下記の例のように、データの種別（＝APIの種別）を指定します。  
-ここでは、"Product", "Plant", "Accounting" が指定されています。    
+ここでは、"Header" が指定されています。    
   
 ```
-"api_schema": "sap.s4.beh.billofmaterial.v1.BillOfMaterial.Created.v1",
-"accepter": ["Item"],
-"material_code": "",
-"plant": "1010",
-"deleted": false
+	"api_schema": "sap.s4.beh.billofmaterial.v1.BillOfMaterial.Created.v1",
+	"accepter": ["Header"],
+	"material_code": "SG23",
+	"plant": "1010",
+	"deleted": false
 ```
   
 * 全データを取得する際のsample.jsonの記載例(2)  
@@ -57,11 +59,11 @@ accepter において 下記の例のように、データの種別（＝APIの�
 全データを取得する場合、sample.json は以下のように記載します。  
 
 ```
-"api_schema": "sap.s4.beh.billofmaterial.v1.BillOfMaterial.Created.v1",
-"accepter": ["All"],
-"material_code": "",
-"plant": "1010",
-"deleted": false
+	"api_schema": "sap.s4.beh.billofmaterial.v1.BillOfMaterial.Created.v1",
+	"accepter": ["All"],
+	"material_code": "SG23",
+	"plant": "1010",
+	"deleted": false
 ```
 
 ## 指定されたデータ種別のコール
@@ -75,12 +77,16 @@ func (c *SAPAPICaller) AsyncGetBillOfMaterial(material, plant string, accepter [
 	wg.Add(len(accepter))
 	for _, fn := range accepter {
 		switch fn {
+		case "Header":
+			func() {
+				c.Header(material, plant)
+				wg.Done()
+			}()
 		case "Item":
 			func() {
 				c.Item(material, plant)
 				wg.Done()
 			}()
-
 		default:
 			wg.Done()
 		}
@@ -92,15 +98,61 @@ func (c *SAPAPICaller) AsyncGetBillOfMaterial(material, plant string, accepter [
 
 ## Output  
 本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。  
-以下の sample.json の例は、SAP 部品表  の 明細 が取得された結果の JSON の例です。  
-以下の項目のうち、"BaseUnit" ～ "WeightUnit" は、/SAP_API_Output_Formatter/type.go 内 の Type Item {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
+以下の sample.json の例は、SAP 部品表  の ヘッダ が取得された結果の JSON の例です。  
+以下の項目のうち、"BillOfMaterial" ～ "to_BillOfMaterialItem" は、/SAP_API_Output_Formatter/type.go 内 の Type Header {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
 
 ```
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-bill-of-material-reads/SAP_API_Caller/caller.go#L46",
-	"function": "sap-api-integrations-bill-of-material-reads/SAP_API_Caller.(*SAPAPICaller).Item",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-bill-of-material-reads/SAP_API_Caller/caller.go#L58",
+	"function": "sap-api-integrations-bill-of-material-reads/SAP_API_Caller.(*SAPAPICaller).Header",
 	"level": "INFO",
-	"message": "&{BillOfMaterial:00000001 BillOfMaterialVariant:1 BillOfMaterialCategory:M BillOfMaterialVersion: BillOfMaterialItemNodeNumber:1 HeaderChangeDocument: Material:SG23 Plant:1010 ValidityStartDate:/Date(1136073600000)/ ValidityEndDate:/Date(253402214400000)/ BillOfMaterialComponent:RM13 ComponentDescription:RAW13,PD,Subcontracting BillOfMaterialItemQuantity:100 ComponentScrapInPercent:0.00 IsDeleted:false}",
-	"time": "2021-12-08T21:13:42.001292+09:00"
+	"message": [
+		{
+			"BillOfMaterial": "00000001",
+			"BillOfMaterialCategory": "M",
+			"BillOfMaterialVariant": "1",
+			"BillOfMaterialVersion": "",
+			"EngineeringChangeDocument": "",
+			"Material": "SG23",
+			"Plant": "1010",
+			"BillOfMaterialHeaderUUID": "00163e19-8846-1ed6-8ebf-6035b1bec3e4",
+			"BillOfMaterialVariantUsage": "1",
+			"EngineeringChangeDocForEdit": "",
+			"IsMultipleBOMAlt": false,
+			"BOMHeaderInternalChangeCount": "1",
+			"BOMUsagePriority": "",
+			"BillOfMaterialAuthsnGrp": "",
+			"BOMVersionStatus": "",
+			"IsVersionBillOfMaterial": false,
+			"IsLatestBOMVersion": false,
+			"IsConfiguredMaterial": false,
+			"BOMTechnicalType": "",
+			"BOMGroup": "",
+			"BOMHeaderText": "",
+			"BOMAlternativeText": "",
+			"BillOfMaterialStatus": "1",
+			"HeaderValidityStartDate": "/Date(1136073600000)/",
+			"HeaderValidityEndDate": "/Date(253402214400000)/",
+			"ChgToEngineeringChgDocument": "",
+			"IsMarkedForDeletion": false,
+			"IsALE": false,
+			"MatFromLotSizeQuantity": "0",
+			"MaterialToLotSizeQuantity": "0",
+			"BOMHeaderBaseUnit": "PC",
+			"BOMHeaderQuantityInBaseUnit": "100",
+			"RecordCreationDate": "/Date(1466726400000)/",
+			"LastChangeDate": "",
+			"BOMIsToBeDeleted": "",
+			"DocumentIsCreatedByCAD": false,
+			"LaboratoryOrDesignOffice": "",
+			"LastChangeDateTime": "/Date(1466769600000+0000)/",
+			"ProductDescription": "SEMI23,PD,Subcontracting",
+			"PlantName": "Plant 1 DE",
+			"BillOfMaterialHdrDetailsText": "",
+			"SelectedBillOfMaterialVersion": "",
+			"to_BillOfMaterialItem": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002/MaterialBOM(BillOfMaterial='00000001',BillOfMaterialCategory='M',BillOfMaterialVariant='1',BillOfMaterialVersion='',EngineeringChangeDocument='',Material='SG23',Plant='1010')/to_BillOfMaterialItem"
+		}
+	],
+	"time": "2021-12-31T14:45:55.89993+09:00"
 }
 ```
