@@ -56,6 +56,7 @@ func (c *SAPAPICaller) Header(material, plant string) {
 		return
 	}
 	c.log.Info(headerData)
+
 	itemData, err := c.callToItem(headerData[0].ToItem)
 	if err != nil {
 		c.log.Error(err)
