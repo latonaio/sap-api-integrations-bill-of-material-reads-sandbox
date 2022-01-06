@@ -35,6 +35,8 @@ sap-api-integrations-bill-of-material-reads において、API への値入力�
 
 * inoutSDC.BillOfMaterial.Material（品目）
 * inoutSDC.BillOfMaterial.Plant（プラント）
+* inoutSDC.BillOfMaterial.BillOfMaterialItem.BillOfMaterialComponent（構成品目）
+* inoutSDC.BillOfMaterial.BillOfMaterialItem.ComponentDescription（構成品目テキスト）
 
 ## SAP API Bussiness Hub の API の選択的コール
 
@@ -72,7 +74,7 @@ accepter における データ種別 の指定に基づいて SAP_API_Caller �
 caller.go の func() 毎 の 以下の箇所が、指定された API をコールするソースコードです。  
 
 ```
-func (c *SAPAPICaller) AsyncGetBillOfMaterial(material, plant string, accepter []string) {
+func (c *SAPAPICaller) AsyncGetBillOfMaterial(material, plant, productDescription, billOfMaterialComponent, componentDescription string, accepter []string) {
 	wg := &sync.WaitGroup{}
 	wg.Add(len(accepter))
 	for _, fn := range accepter {
@@ -85,6 +87,21 @@ func (c *SAPAPICaller) AsyncGetBillOfMaterial(material, plant string, accepter [
 		case "Item":
 			func() {
 				c.Item(material, plant)
+				wg.Done()
+			}()
+		case "ProductDescription":
+			func() {
+				c.ProductDescription(plant, productDescription)
+				wg.Done()
+			}()
+		case "Component":
+			func() {
+				c.Component(plant, billOfMaterialComponent)
+				wg.Done()
+			}()
+		case "ComponentDescription":
+			func() {
+				c.ComponentDescription(plant, componentDescription)
 				wg.Done()
 			}()
 		default:

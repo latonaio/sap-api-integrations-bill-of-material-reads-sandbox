@@ -1,0 +1,59 @@
+{
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-bill-of-material-reads/SAP_API_Caller/caller.go#L190",
+	"function": "sap-api-integrations-bill-of-material-reads/SAP_API_Caller.(*SAPAPICaller).Component",
+	"level": "INFO",
+	"message": [
+		{
+			"BillOfMaterial": "00000001",
+			"BillOfMaterialVariant": "1",
+			"BillOfMaterialCategory": "M",
+			"BillOfMaterialVersion": "",
+			"BillOfMaterialItemNodeNumber": "1",
+			"HeaderChangeDocument": "",
+			"Material": "SG23",
+			"Plant": "1010",
+			"ValidityStartDate": "/Date(1136073600000)/",
+			"ValidityEndDate": "/Date(253402214400000)/",
+			"BillOfMaterialComponent": "RM13",
+			"ComponentDescription": "RAW13,PD,Subcontracting",
+			"BillOfMaterialItemQuantity": "100",
+			"ComponentScrapInPercent": "0.00",
+			"IsDeleted": false
+		},
+		{
+			"BillOfMaterial": "00000001",
+			"BillOfMaterialVariant": "1",
+			"BillOfMaterialCategory": "M",
+			"BillOfMaterialVersion": "",
+			"BillOfMaterialItemNodeNumber": "3",
+			"HeaderChangeDocument": "",
+			"Material": "SG23",
+			"Plant": "1010",
+			"ValidityStartDate": "/Date(1136073600000)/",
+			"ValidityEndDate": "/Date(253402214400000)/",
+			"BillOfMaterialComponent": "RM13",
+			"ComponentDescription": "RAW13,PD,Subcontracting",
+			"BillOfMaterialItemQuantity": "100",
+			"ComponentScrapInPercent": "0.00",
+			"IsDeleted": false
+		},
+		{
+			"BillOfMaterial": "00000199",
+			"BillOfMaterialVariant": "1",
+			"BillOfMaterialCategory": "M",
+			"BillOfMaterialVersion": "",
+			"BillOfMaterialItemNodeNumber": "1",
+			"HeaderChangeDocument": "",
+			"Material": "SG26",
+			"Plant": "1010",
+			"ValidityStartDate": "/Date(1136073600000)/",
+			"ValidityEndDate": "/Date(253402214400000)/",
+			"BillOfMaterialComponent": "RM13",
+			"ComponentDescription": "RAW13,PD,Subcontracting",
+			"BillOfMaterialItemQuantity": "100",
+			"ComponentScrapInPercent": "0.00",
+			"IsDeleted": false
+		}
+	],
+	"time": "2022-01-06T20:08:37.832232+09:00"
+}

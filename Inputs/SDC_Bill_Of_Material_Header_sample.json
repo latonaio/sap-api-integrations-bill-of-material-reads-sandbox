@@ -49,8 +49,8 @@
 		"BillOfMaterialItem": {
 			"BillOfMaterialItemNodeNumber": "",
 			"HeaderChangeDocument": "",
-			"Material": "SG23",
-			"Plant": "1010",
+			"Material": "",
+			"Plant": "",
 			"ValidityStartDate": "",
 			"ValidityEndDate": "",
 			"BillOfMaterialComponent": "",
