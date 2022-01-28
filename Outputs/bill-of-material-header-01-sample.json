@@ -1,5 +1,5 @@
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-bill-of-material-reads/SAP_API_Caller/caller.go#L58",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-bill-of-material-reads/SAP_API_Caller/caller.go#L73",
 	"function": "sap-api-integrations-bill-of-material-reads/SAP_API_Caller.(*SAPAPICaller).Header",
 	"level": "INFO",
 	"message": [
@@ -27,8 +27,8 @@
 			"BOMHeaderText": "",
 			"BOMAlternativeText": "",
 			"BillOfMaterialStatus": "1",
-			"HeaderValidityStartDate": "/Date(1136073600000)/",
-			"HeaderValidityEndDate": "/Date(253402214400000)/",
+			"HeaderValidityStartDate": "2006-01-01T09:00:00+09:00",
+			"HeaderValidityEndDate": "9999-12-31T09:00:00+09:00",
 			"ChgToEngineeringChgDocument": "",
 			"IsMarkedForDeletion": false,
 			"IsALE": false,
@@ -36,12 +36,12 @@
 			"MaterialToLotSizeQuantity": "0",
 			"BOMHeaderBaseUnit": "PC",
 			"BOMHeaderQuantityInBaseUnit": "100",
-			"RecordCreationDate": "/Date(1466726400000)/",
+			"RecordCreationDate": "2016-06-24T09:00:00+09:00",
 			"LastChangeDate": "",
 			"BOMIsToBeDeleted": "",
 			"DocumentIsCreatedByCAD": false,
 			"LaboratoryOrDesignOffice": "",
-			"LastChangeDateTime": "/Date(1466769600000+0000)/",
+			"LastChangeDateTime": "",
 			"ProductDescription": "SEMI23,PD,Subcontracting",
 			"PlantName": "Plant 1 DE",
 			"BillOfMaterialHdrDetailsText": "",
@@ -49,5 +49,5 @@
 			"to_BillOfMaterialItem": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002/MaterialBOM(BillOfMaterial='00000001',BillOfMaterialCategory='M',BillOfMaterialVariant='1',BillOfMaterialVersion='',EngineeringChangeDocument='',Material='SG23',Plant='1010')/to_BillOfMaterialItem"
 		}
 	],
-	"time": "2021-12-31T14:45:55.89993+09:00"
+	"time": "2022-01-28T12:13:25+09:00"
 }

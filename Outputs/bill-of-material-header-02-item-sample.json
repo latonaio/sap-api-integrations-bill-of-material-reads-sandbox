@@ -1,5 +1,5 @@
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-bill-of-material-reads/SAP_API_Caller/caller.go#L64",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-bill-of-material-reads/SAP_API_Caller/caller.go#L80",
 	"function": "sap-api-integrations-bill-of-material-reads/SAP_API_Caller.(*SAPAPICaller).Header",
 	"level": "INFO",
 	"message": [
@@ -12,8 +12,8 @@
 			"HeaderChangeDocument": "",
 			"Material": "SG23",
 			"Plant": "1010",
-			"ValidityStartDate": "/Date(1136073600000)/",
-			"ValidityEndDate": "/Date(253402214400000)/",
+			"ValidityStartDate": "2006-01-01T09:00:00+09:00",
+			"ValidityEndDate": "9999-12-31T09:00:00+09:00",
 			"BillOfMaterialComponent": "RM13",
 			"ComponentDescription": "RAW13,PD,Subcontracting",
 			"BillOfMaterialItemQuantity": "100",
@@ -29,8 +29,8 @@
 			"HeaderChangeDocument": "",
 			"Material": "SG23",
 			"Plant": "1010",
-			"ValidityStartDate": "/Date(1136073600000)/",
-			"ValidityEndDate": "/Date(253402214400000)/",
+			"ValidityStartDate": "2006-01-01T09:00:00+09:00",
+			"ValidityEndDate": "9999-12-31T09:00:00+09:00",
 			"BillOfMaterialComponent": "RM14",
 			"ComponentDescription": "RAW14,PD,Subcontracting",
 			"BillOfMaterialItemQuantity": "100",
@@ -46,8 +46,8 @@
 			"HeaderChangeDocument": "",
 			"Material": "SG23",
 			"Plant": "1010",
-			"ValidityStartDate": "/Date(1136073600000)/",
-			"ValidityEndDate": "/Date(253402214400000)/",
+			"ValidityStartDate": "2006-01-01T09:00:00+09:00",
+			"ValidityEndDate": "9999-12-31T09:00:00+09:00",
 			"BillOfMaterialComponent": "RM13",
 			"ComponentDescription": "RAW13,PD,Subcontracting",
 			"BillOfMaterialItemQuantity": "100",
@@ -55,5 +55,5 @@
 			"IsDeleted": false
 		}
 	],
-	"time": "2021-12-31T14:45:57.258862+09:00"
+	"time": "2022-01-28T12:13:27+09:00"
 }
